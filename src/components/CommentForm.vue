@@ -33,20 +33,18 @@
 
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
+import { submitComment as submitCommentService } from '../services/comments';
 
 const form = ref({ name: '', message: '' });
 const error = ref('');
 
 const submitComment = async () => {
   try {
-    await axios.post('http://localhost:3000/comments', {
-      comment: form.value,
-    });
+    await submitCommentService(form.value);
     form.value = { name: '', message: '' };
     error.value = '';
   } catch (err) {
-    error.value = 'Failed to submit comment';
+    error.value = err.response?.data?.error || 'Failed to submit comment';
   }
 };
 </script>
