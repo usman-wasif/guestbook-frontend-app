@@ -1,5 +1,6 @@
 import { API_CONFIG } from '../config/api';
 import api from '@/config/apiClient';
+import axios from 'axios';
 
 export const fetchComments = async () => {
     const response = await api.get(`${API_CONFIG.ADMIN_BASE_URL}${API_CONFIG.ENDPOINTS.COMMENTS.BASE}`);
@@ -7,12 +8,12 @@ export const fetchComments = async () => {
 };
 
 export const fetchUserComments = async () => {
-    const response = await api.get(`${API_CONFIG.USER_BASE_URL}${API_CONFIG.ENDPOINTS.COMMENTS.BASE}`);
+    const response = await axios.get(`${API_CONFIG.USER_BASE_URL}${API_CONFIG.ENDPOINTS.COMMENTS.BASE}`);
     return response.data;
 };
 
 export const submitComment = async (comment) => {
-    const response = await api.post(`${API_CONFIG.USER_BASE_URL}${API_CONFIG.ENDPOINTS.COMMENTS.BASE}`, {
+    const response = await axios.post(`${API_CONFIG.USER_BASE_URL}${API_CONFIG.ENDPOINTS.COMMENTS.BASE}`, {
         comment,
     });
     return response.data;
