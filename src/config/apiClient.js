@@ -3,7 +3,7 @@ import { API_CONFIG, AUTH_HEADER } from '@/config/api';
 import { getToken } from '@/services/auth';
 
 const api = axios.create({
-    baseURL: API_CONFIG.BASE_URL,
+    baseURL: API_CONFIG.ADMIN_BASE_URL,
 });
 
 // attach JWT automatically
